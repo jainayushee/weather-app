@@ -1,18 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card } from 'react-bootstrap'
 import './Current.css'
 export default function Current(props: any) {
-  console.log(props);
-  
+  const [data, setData] = useState(props.data)
+  let current = new Date();  
+
+  useEffect(()=>{
+    setData(props.data)
+  })
   return (
     <Card className="custom-card-css row">
       <div className="details-left col-6">
-        <div className="temp">13</div>
-        <div className="loc">London, GB</div>
+        <div className="temp">{data.main.temp}&deg;C</div>
+        <div className="loc px-3">{data.name}, {data.sys.country}</div>
       </div>
       <div className="details-right col-6">
-        <div className="time push-right">7:50 PM</div>
-        <div className="day push-right">Sunset time, Monday</div>
+        <div className="time push-right">{current.getHours()}:{current.getMinutes()}</div>
+        <div className="day push-right">{current.toDateString()}</div>
       </div>
     </Card>
   )

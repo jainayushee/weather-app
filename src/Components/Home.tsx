@@ -3,29 +3,30 @@ import Current from './Current'
 import Forecast from './Forecast'
 import Navbar from './Navbar'
 import './Home.css'
-// import { WeatherDataService } from '../Services/weather.service';
+import { WeatherDataService } from '../Services/weather.service';
 
 export default function Home() {
     const [weatherData, setWeatherData] = useState();
-    const [flag]= useState(false)
-    
-    useEffect(() => {
-        // WeatherDataService.getCurrentWeather().then((res) => {
-        //     setWeatherData(res);
-        // })
+    const [flag, setFlag] = useState(false)
+    const [city, setCity] = useState("Bangalore")
 
-        // WeatherDataService.get30DayForecast().then((res)=> {
-        //     console.log(res);
-            
-        // })
-    }, [flag])
+    const getWeatherDetails = async () => {
+        const response = WeatherDataService.getCurrentWeather(city)
+        setWeatherData(await response);
+        setFlag(!flag)
+    }
+
+    useEffect(() => {
+        console.log(city);
+        getWeatherDetails()
+    }, [city])
 
     return (
         <div className='home-wrapper'>
-            <div className="nav"><Navbar /></div>
+            <div className="nav"><Navbar setCity={setCity} /></div>
             <div className="main-content">
                 <div className="current-card">
-                    <Current data={weatherData}/>
+                    {weatherData && <Current data={weatherData} />}
                 </div>
                 <div className="detail-card">
                     <Forecast data={weatherData} />

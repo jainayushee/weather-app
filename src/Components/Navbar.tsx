@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -6,10 +6,21 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import './Home.css'
 
-export default function NavbarComponent() {
+export default function NavbarComponent(props: any) {
+  const [location, setLocation] = useState("")
+  const onChange = (e: any) => {
+    setLocation(e.target.value);
+  }
+
+  const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    console.log(location);    
+    props.setCity(location)
+  }
   return (
-    <Navbar bg="light" expand="lg" style={{minWidth: "100%"}}>
+    <Navbar bg="light" expand="lg" style={{ minWidth: "100%" }}>
       <Container>
         <Navbar.Brand href="#">Weather Application</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
@@ -26,8 +37,9 @@ export default function NavbarComponent() {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
+              onChange={(e) => onChange(e)}
             />
-            <Button variant="outline-success">Search</Button>
+            <Button className="custom-button" variant="outline-success" onClick={(e) => onSubmit(e)}>Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

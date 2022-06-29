@@ -1,5 +1,5 @@
 .custom-card-css {
-    background-color: #ffd6ff !important;
+    background-color: #219ebc !important;
     min-height: 100%;
     min-width: 80%;
     display: flex;
@@ -8,7 +8,7 @@
 }
 
 .details-left {
-    margin-top: 200px;
+    margin-top: 90px;
     bottom: 0;
 }
 
@@ -20,4 +20,10 @@
 .push-right{
     display: flex;
     justify-content: flex-end;
+}
+
+.temp{
+    font-size: 90px;
+    margin: 0 !important;
+    padding: 0 !important;
 }

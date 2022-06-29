@@ -17,7 +17,7 @@
 
 .current-card {
   flex: 5;
-  background: white;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -30,15 +30,32 @@
   align-items: center;
 }
 
-.card-content{
+.card-content {
   top: 0;
 }
 
-.full-block{
+.full-block {
   min-width: 100%;
   min-height: 100%;
   display: block;
 }
 
+.custom-button {
+  color: #219ebc;
+  background-color: transparent;
+  background-image: none;
+  border-color: #219ebc
+}
 
+.custom-button:hover {
+  color: #222;
+  background-color: #219ebc;
+  border-color: #219ebc
+}
 
+.custom-button:focus,
+.custom-button.focus {
+  box-shadow: 0 0 0 .2rem #219ebc;
+  background-color: #219ebc;
+  border-color: #219ebc
+}
