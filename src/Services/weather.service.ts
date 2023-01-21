@@ -1,5 +1,3 @@
-
-import current from "../MockResponse/current";
 const axios = require("axios");
 
 async function getCurrentWeather(city: string): Promise<any> {

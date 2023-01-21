@@ -8,6 +8,3 @@ const getDistinctDates = (data: any) => {
 }
 
 export default getDistinctDates
-
-const getMeanTemperature = (data: any, labels: any) => {
-}

@@ -12,8 +12,7 @@ export default function Forecast(props: any) {
 
     setLabelValue(getDistinctDates(forecastData))
 
-
-  }, [])
+  }, [forecastData])
   return (
     <>
 
