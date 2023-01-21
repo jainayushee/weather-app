@@ -1,8 +1,7 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { Button } from 'react-bootstrap';
 import Home from './Components/Home';
+import Error from './Components/Error';
 
 function App() {
   return (

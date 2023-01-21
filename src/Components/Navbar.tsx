@@ -16,7 +16,6 @@ export default function NavbarComponent(props: any) {
 
   const onSubmit = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-    console.log(location);    
     props.setCity(location)
   }
   return (

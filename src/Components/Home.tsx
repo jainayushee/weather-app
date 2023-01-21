@@ -7,17 +7,29 @@ import { WeatherDataService } from '../Services/weather.service';
 
 export default function Home() {
     const [weatherData, setWeatherData] = useState();
+    const [forecastData, setForecastData] = useState();
     const [flag, setFlag] = useState(false)
     const [city, setCity] = useState("Bangalore")
 
-    const getWeatherDetails = async () => {
-        const response = WeatherDataService.getCurrentWeather(city)
-        setWeatherData(await response);
-        setFlag(!flag)
+    const getWeatherDetails = () => {
+        WeatherDataService.getCurrentWeather(city).then((res) => {
+            setWeatherData(res);            
+        })
+
+        
+        
+    }
+    const getForecastDetails = () => {
+        WeatherDataService.get5DayForecast(city).then((res) => {
+            setForecastData(res);            
+        })
+        
+            
     }
 
     useEffect(() => {
-        console.log(city);
+        
+        getForecastDetails()
         getWeatherDetails()
     }, [city])
 
@@ -29,7 +41,7 @@ export default function Home() {
                     {weatherData && <Current data={weatherData} />}
                 </div>
                 <div className="detail-card">
-                    <Forecast data={weatherData} />
+                    {forecastData && <Forecast data={forecastData} />}
                 </div>
             </div>
         </div>

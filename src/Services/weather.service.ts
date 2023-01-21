@@ -1,33 +1,24 @@
+
+import current from "../MockResponse/current";
 const axios = require("axios");
 
 async function getCurrentWeather(city: string): Promise<any> {
-    const { data } = await axios.get(`https://community-open-weather-map.p.rapidapi.com/weather?q=${city}&units=metric`, {
-        headers: {
-            'X-RapidAPI-Key': '9a0b1522d5mshbbeb4641bd907ecp11f021jsnb5520ce12a8e',
-            'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
-        },
-      });    
-      
-      return data;
+    const { data } = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=047b14b36768b0389ec24e6ccd33f3a8`, {
+
+    });
+
+    return data;
 }
 
-async function get30DayForecast(): Promise<any> {
+async function get5DayForecast(city: string): Promise<any> {
 
-    const options = {
-        method: 'GET',
-        url: 'https://community-open-weather-map.p.rapidapi.com/climate/month',
-        params: { q: 'San Francisco' },
-        headers: {
-            'X-RapidAPI-Key': '9a0b1522d5mshbbeb4641bd907ecp11f021jsnb5520ce12a8e',
-            'X-RapidAPI-Host': 'community-open-weather-map.p.rapidapi.com'
-        }
-    };
+    const { data } = await axios.get(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=047b14b36768b0389ec24e6ccd33f3a8`, {
 
-    axios.request(options).then(function (response: { data: any; }) {
-        console.log(response.data);
-    }).catch(function (error: any) {
-        console.error(error);
     });
+
+    return data;
 }
 
 
@@ -37,5 +28,5 @@ async function get30DayForecast(): Promise<any> {
 
 export const WeatherDataService = {
     getCurrentWeather: getCurrentWeather,
-    get30DayForecast: get30DayForecast
+    get5DayForecast: get5DayForecast
 };
